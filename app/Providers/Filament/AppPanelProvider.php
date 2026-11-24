@@ -54,6 +54,7 @@ class AppPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([])
-            ->darkMode(false);
+            ->darkMode(false)
+            ->sidebarCollapsibleOnDesktop();
     }
 }
