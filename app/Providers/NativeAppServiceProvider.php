@@ -12,6 +12,9 @@ class NativeAppServiceProvider implements ProvidesPhpIni
         Window::open();
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function phpIni(): array
     {
         return [
