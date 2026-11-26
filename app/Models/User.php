@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
+use Filament\Models\Contracts\HasTenants;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -48,7 +51,7 @@ use Illuminate\Support\Str;
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements HasTenants
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
@@ -86,5 +89,15 @@ class User extends Authenticatable
     public function currentWorkspace(): HasOne
     {
         return $this->hasOne(Workspace::class)->where('current', true);
+    }
+
+    public function getTenants(Panel $panel): Collection
+    {
+        return $this->workspaces;
+    }
+
+    public function canAccessTenant(Model $tenant): bool
+    {
+        return $this->workspaces()->whereKey($tenant)->exists();
     }
 }
