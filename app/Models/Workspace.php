@@ -37,9 +37,12 @@ class Workspace extends Model
     /** @use HasFactory<WorkspaceFactory> */
     use HasFactory;
 
-    protected $casts = [
-        'current' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'current' => 'boolean',
+        ];
+    }
 
     public function owner(): BelongsTo
     {
