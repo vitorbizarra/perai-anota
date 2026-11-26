@@ -19,14 +19,6 @@ class WorkspaceFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name'    => fake()->unique()->company(),
-            'current' => false,
-        ];
-    }
-
-    protected function withUser(User $user): array
-    {
-        return [
-            'user_id' => $user->id,
         ];
     }
 }

@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $user_id
  * @property string $name
- * @property bool $current
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read User $owner
@@ -23,7 +22,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workspace newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workspace query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workspace whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Workspace whereCurrent($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workspace whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workspace whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workspace whereUpdatedAt($value)
@@ -31,18 +29,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @mixin \Eloquent
  */
-#[Fillable(['user_id', 'name', 'current'])]
+#[Fillable(['user_id', 'name'])]
 class Workspace extends Model
 {
     /** @use HasFactory<WorkspaceFactory> */
     use HasFactory;
-
-    protected function casts(): array
-    {
-        return [
-            'current' => 'boolean',
-        ];
-    }
 
     public function owner(): BelongsTo
     {

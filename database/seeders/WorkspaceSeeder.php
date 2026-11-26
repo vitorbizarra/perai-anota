@@ -19,7 +19,6 @@ class WorkspaceSeeder extends Seeder
         Workspace::factory()->create([
             'user_id' => $user->id,
             'name'    => 'Default Workspace',
-            'current' => true,
         ]);
     }
 }

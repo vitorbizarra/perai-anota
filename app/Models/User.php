@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -28,7 +27,6 @@ use Illuminate\Support\Str;
  * @property string|null $remember_token
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
- * @property-read Workspace|null $currentWorkspace
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read Collection<int, Workspace> $workspaces
@@ -84,11 +82,6 @@ class User extends Authenticatable implements HasTenants
     public function workspaces(): HasMany
     {
         return $this->hasMany(Workspace::class);
-    }
-
-    public function currentWorkspace(): HasOne
-    {
-        return $this->hasOne(Workspace::class)->where('current', true);
     }
 
     public function getTenants(Panel $panel): Collection

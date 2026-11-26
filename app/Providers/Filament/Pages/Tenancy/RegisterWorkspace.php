@@ -30,7 +30,6 @@ class RegisterWorkspace extends RegisterTenant
         $workspace = Workspace::create([
             'user_id' => $user->id,
             'name'    => $data['name'],
-            'current' => true,
         ]);
 
         return $workspace;
