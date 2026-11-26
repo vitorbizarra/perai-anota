@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Http\Middleware\AuthenticateLocalUser;
 use App\Models\Workspace;
+use App\Providers\Filament\Pages\Tenancy\RegisterWorkspace;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Dashboard;
@@ -55,6 +56,7 @@ class AppPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop()
             ->spa()
             ->topbar(false)
-            ->tenant(Workspace::class, ownershipRelationship: 'owner');
+            ->tenant(Workspace::class, ownershipRelationship: 'owner')
+            ->tenantRegistration(RegisterWorkspace::class);
     }
 }
