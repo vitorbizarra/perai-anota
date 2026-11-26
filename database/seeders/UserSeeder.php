@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Local User',
+            'name'  => 'Local User',
             'email' => 'local@peraianota.app',
         ]);
     }

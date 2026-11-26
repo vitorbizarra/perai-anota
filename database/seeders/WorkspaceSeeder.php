@@ -12,13 +12,13 @@ class WorkspaceSeeder extends Seeder
     {
         $user = User::first();
 
-        if (! $user) {
+        if (!$user) {
             return;
         }
 
         Workspace::factory()->create([
             'user_id' => $user->id,
-            'name' => 'Default Workspace',
+            'name'    => 'Default Workspace',
             'current' => true,
         ]);
     }
