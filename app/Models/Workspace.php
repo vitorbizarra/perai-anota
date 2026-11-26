@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool $current
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
- * @property-read Workspace $owner
+ * @property-read User $owner
  *
  * @method static \Database\Factories\WorkspaceFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workspace newModelQuery()
@@ -46,6 +46,6 @@ class Workspace extends Model
 
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(Workspace::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
