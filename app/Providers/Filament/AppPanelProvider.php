@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Http\Middleware\AuthenticateLocalUser;
 use App\Models\Workspace;
+use App\Providers\Filament\Pages\Tenancy\EditWorkspaceProfile;
 use App\Providers\Filament\Pages\Tenancy\RegisterWorkspace;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -57,6 +58,7 @@ class AppPanelProvider extends PanelProvider
             ->spa()
             ->topbar(false)
             ->tenant(Workspace::class, ownershipRelationship: 'owner')
-            ->tenantRegistration(RegisterWorkspace::class);
+            ->tenantRegistration(RegisterWorkspace::class)
+            ->tenantProfile(EditWorkspaceProfile::class);
     }
 }
