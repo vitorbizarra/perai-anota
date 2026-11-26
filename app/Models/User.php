@@ -79,11 +79,17 @@ class User extends Authenticatable implements HasTenants
             : $initials;
     }
 
+    /**
+     * @return HasMany<Workspace, $this>
+     */
     public function workspaces(): HasMany
     {
         return $this->hasMany(Workspace::class);
     }
 
+    /**
+     * @return Collection<int, Workspace>
+     */
     public function getTenants(Panel $panel): Collection
     {
         return $this->workspaces;
