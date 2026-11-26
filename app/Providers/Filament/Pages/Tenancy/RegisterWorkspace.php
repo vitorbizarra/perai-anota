@@ -19,7 +19,9 @@ class RegisterWorkspace extends RegisterTenant
     {
         return $schema
             ->components([
-                TextInput::make('name'),
+                TextInput::make('name')
+                    ->required()
+                    ->maxLength(64),
             ]);
     }
 
