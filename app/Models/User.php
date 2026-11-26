@@ -53,6 +53,11 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public const array DEFAULT_USER_DATA = [
+        'name'  => 'Local User',
+        'email' => 'local@peraianota.app',
+    ];
+
     /**
      * @return array<string, string>
      */
